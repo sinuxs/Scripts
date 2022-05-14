@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 #This code is implemented to calculate the outgoing packets for each 10 seconds log
 #Code is implemented by 30nasameti@Imen Pardis Technologies
 #read -p "Interface Name:" interface

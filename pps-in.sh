@@ -5,9 +5,7 @@
 #echo "your choice is:$interface"
 old_packets=0
 
-#while true; do
-for i in $(seq 1 8640);
-do
+while true; do
     NOW=$(date +%d.%m.%y' '%R:%S)
     packets=$(awk '$1 == "'$1':"{print $3}' /proc/net/dev)
     if ((old_packets)); then

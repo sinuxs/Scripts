@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#This code is implemented to calculate the incoming packets for each 10 seconds log
+#This code is implemented to calculate the incoming packets for each 1 second log
 #Code is implemented by 30nasameti@Imen Pardis Technologies
 #read -p "Interface Name:" interface
 #echo "your choice is:$interface"

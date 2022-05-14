@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 #This code is implemented to calculate the incoming packets for each 10 seconds log
 #Code is implemented by 30nasameti@Imen Pardis Technologies
 #read -p "Interface Name:" interface
@@ -8,12 +8,12 @@ old_packets=0
 while true; do
     NOW=$(date +%d.%m.%y' '%R:%S)
     packets=$(awk '$1 == "'$1':"{print $3}' /proc/net/dev)
-    if ("$old_packets"); then
+    if ((old_packets)); then
         clear
         # the variable rate contains the packets/seconds
         rate=$(bc <<< "($packets - $old_packets) / 1")
 
-        if ("$rate"<=100); then
+        if ((rate<=100)); then
             #ip link set eth0 down
                #printf "%s\n$rate%s\n" "$NOW" " packets/seconds">> /root/one.log
 

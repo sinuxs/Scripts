@@ -46,4 +46,3 @@ do
   ;;
 esac
 done
-rm -rf tmp*

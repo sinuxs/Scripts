@@ -6,10 +6,10 @@ else
  echo "[USAGE]: $./csvscript.sh csvfile "
  exit 1
 fi
-while getopts ":abcd" option;
+while getopts ":fitu" option;
 do
  case $option in 
- a)
+ f)
   while read -r line
   do
   echo "$line" > tmp.sina
@@ -20,7 +20,7 @@ do
   fi
   done< ~/$2
   ;;
- b)
+ t)
   while read -r line
   do
   echo "$line" > tmp1.sina
@@ -34,7 +34,7 @@ do
   fi
   done < ~/$2 > /dev/null 2>&1
   ;;
- c)
+ i)
   while read -r line
   do
   echo "$line" > tmp2.sina
@@ -46,7 +46,7 @@ do
   fi
   done < ~/$2
   ;;
- d)
+ u)
   awk -F ',' '{print $2}' "$2" | sort | uniq -c >> $2.userlist
   ;;
 esac

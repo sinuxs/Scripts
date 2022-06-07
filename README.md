@@ -1,7 +1,7 @@
 # Scripts
 These are the scripts which are implemented for IMPD Technologies.
 This Script Parses the CSV file and get it as an argument to generate related files which have intended data.
-To run csvopt.sh for running just specific block please see below commands which gets secific options[-f -i -t -u] :                   
+To run csvopt.sh for running just specific block please see below commands which gets secific options [-f -i -t -u] :                   
 $ ./csvopt.sh -f csvfile -----> it filters number of fields and returns the rows with columns number more than 14
 
 $ ./csvopt.sh -i csvfile ----->it filters number of fields and returns the rows with bad ip pattern

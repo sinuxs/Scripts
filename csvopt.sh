@@ -23,9 +23,7 @@ do
   while read -r line
   do
   field1=$(echo "$line" | awk -F',' '{printf "%s", $1}' | tr -d ',')
-  if [ "$field1" -gt 2147483647 -o "$field1" -gt 0 ]; then
-   :
-  else
+  if ! [ "$field1" -gt 2147483647 -o "$field1" -gt 0 ]; then
    Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
    echo "$Allfields" >> $2.badts
   fi

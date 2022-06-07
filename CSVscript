@@ -1,0 +1,41 @@
+#!/bin/sh
+if [ -f "$1" ]; then
+ echo "Hooray, Processing ..." 
+else
+ echo "File does not exist, Please Try again and define a CSV file as argument"
+ echo "[USAGE]: $./csvscript.sh filepath-of-csvfile "
+ exit 1
+fi
+while read -r line
+do
+echo "$line" > tmp.sina
+count=$(awk -F, '{ print NF; exit }' ~/tmp.sina)
+if [ "$count" -gt 14 ]; then
+    Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
+    #field2=$(echo "$line" | awk -F',' '{printf "%s", $2}' | tr -d ',')
+    echo "$Allfields" >> $1.bad
+fi
+
+
+echo "$line" > tmp1.sina
+field1=$(echo "$line" | awk -F',' '{printf "%s", $1}' | tr -d ',')
+ts=$(date +%s)
+if [ "$field1" -gt 0 ]; then
+ :
+else
+ Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
+ echo "$Allfields" >> $1.badts
+fi
+
+
+echo "$line" > tmp2.sina
+count=$(awk -F, '{ print NF; exit }' ~/tmp2.sina)
+field3=$(echo "$line" | awk -F',' '{printf "%s", $3}' | tr -d ',')
+if ! [ $(echo "$field3" | awk '/^([0-9]{1,3}[.]){3}([0-9]{1,3})$/{print $1}') ]; then
+ Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
+#if [ "$count" -gt 0 ]; then
+ echo "$Allfields" >> $1.badip
+fi
+done < ~/$1 > /dev/null 2>&1
+awk -F ',' '{print $2}' "$1" | sort | uniq -c >> $1.userlist
+rm -rf tmp*

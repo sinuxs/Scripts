@@ -12,8 +12,7 @@ do
  f)
   while read -r line
   do
-  echo "$line" > tmp.sina
-  count=$(awk -F, '{ print NF; exit }' ~/tmp.sina)
+  count=$(echo "$line" | awk -F, '{ print NF; exit }')
   if [ "$count" -gt 14 ]; then
     Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
     echo "$Allfields" >> $2.bad
@@ -23,9 +22,7 @@ do
  t)
   while read -r line
   do
-  echo "$line" > tmp1.sina
   field1=$(echo "$line" | awk -F',' '{printf "%s", $1}' | tr -d ',')
-  #ts=$(date +%s)
   if [ "$field1" -gt 2147483647 -o "$field1" -gt 0 ]; then
    :
   else
@@ -37,8 +34,6 @@ do
  i)
   while read -r line
   do
-  echo "$line" > tmp2.sina
-  count=$(awk -F, '{ print NF; exit }' ~/tmp2.sina)
   field3=$(echo "$line" | awk -F',' '{printf "%s", $3}' | tr -d ',')
   if ! [ $(echo "$field3" | awk '/^([0-9]{1,3}[.]){3}([0-9]{1,3})$/{print $1}') ]; then
     Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')

@@ -3,7 +3,7 @@ if [ -f "$1" ]; then
  echo "Hooray, Processing ..." 
 else
  echo "File does not exist, Please Try again and define a CSV file as argument"
- echo "[USAGE]: $./csvscript.sh filepath-of-csvfile "
+ echo "[USAGE]: $./csvscript.sh csvfile "
  exit 1
 fi
 while read -r line

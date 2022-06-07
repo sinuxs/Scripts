@@ -15,8 +15,6 @@ if [ "$count" -gt 14 ]; then
     #field2=$(echo "$line" | awk -F',' '{printf "%s", $2}' | tr -d ',')
     echo "$Allfields" >> $1.bad
 fi
-
-
 echo "$line" > tmp1.sina
 field1=$(echo "$line" | awk -F',' '{printf "%s", $1}' | tr -d ',')
 ts=$(date +%s)
@@ -26,8 +24,6 @@ else
  Allfields=$(echo "$line" | awk -F',' '{printf "%s", $0}')
  echo "$Allfields" >> $1.badts
 fi
-
-
 echo "$line" > tmp2.sina
 count=$(awk -F, '{ print NF; exit }' ~/tmp2.sina)
 field3=$(echo "$line" | awk -F',' '{printf "%s", $3}' | tr -d ',')
